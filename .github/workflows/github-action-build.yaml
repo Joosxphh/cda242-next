@@ -34,6 +34,5 @@ jobs:
             /home/runner/.cache/Cypress
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
       - run: echo "🚀 Le code du dépôt a été cloné sur le serveur d'exécution."
-      - run: npm clean-install
       - run: npm run e2e:headless
       - run : echo "🚀 Étapes de test terminées"
