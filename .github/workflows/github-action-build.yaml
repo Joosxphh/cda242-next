@@ -25,6 +25,7 @@ jobs:
     needs:
         - build
     steps:
+      - uses: actions/checkout@v4
       - run: echo "🚀 Lancement des étapes de test"
       - name: Restore cache (node_modules)
         uses: actions/cache/restore@v4
