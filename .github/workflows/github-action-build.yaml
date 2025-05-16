@@ -22,9 +22,6 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:22.15.0
-      options: --user 1001
     needs:
         - build
     strategy:
