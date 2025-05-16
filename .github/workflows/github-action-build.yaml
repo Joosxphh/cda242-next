@@ -41,7 +41,7 @@ jobs:
       - uses: cypress-io/github-action@v6
         with:
           browser: ${{ matrix.browser }}
-          start: npm run start
+          start: npm run dev
       - name: Upload Cypress videos
         uses: actions/upload-artifact@v4
         if: always()
