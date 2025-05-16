@@ -1,0 +1,15 @@
+name: 🚀 Build workflow
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Build-Workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🚀 Lancement des étapes de construction"
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "🚀 Le code du dépôt a été cloné sur le serveur d'exécution."
+      - run: npm install
+      - run: npm run build
+      - run : echo "🚀 Étapes de construction terminées"
+      - run: npm run e2e:headless
