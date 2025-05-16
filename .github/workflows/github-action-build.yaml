@@ -39,5 +39,5 @@ jobs:
       - name: Upload Cypress videos
         uses: actions/upload-artifact@v4
         with:
-          path: ../cypress/videos
+          path: cypress/videos/
       - run : echo "🚀 Étapes de test terminées"
