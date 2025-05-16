@@ -23,7 +23,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:22.15.0
+      image: cypress/browsers:latest
       options: --user 1001
     needs:
         - build
@@ -43,8 +43,9 @@ jobs:
       - run: echo "🚀 Le code du dépôt a été cloné sur le serveur d'exécution."
       - uses: cypress-io/github-action@v6
         with:
-          browser: ${{ matrix.browser }}
+          install: false
           start: npm run dev
+          browser: ${{ matrix.browser }}
       - name: Upload Cypress videos
         uses: actions/upload-artifact@v4
         if: always()
