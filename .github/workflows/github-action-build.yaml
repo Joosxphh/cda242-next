@@ -31,12 +31,13 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script:
-            whoami
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
             cd cda242-next
             git pull
-            /home/ubuntu/.nvm/versions/node/v4.2.0/bin/npm install
-            /home/ubuntu/.nvm/versions/node/v4.2.0/bin/npm run build
-            /home/ubuntu/.nvm/versions/node/v4.2.0/bin/pm2 restart npm
+            npm install
+            npm run build
+            pm2 restart npm
 
 
   test:
