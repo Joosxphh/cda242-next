@@ -23,22 +23,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Execute remote SSH commands using passwords
-        uses: appleboy/ssh-action@v0.1.8
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: |
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-            cd cda242-next
-            git pull
-            npm install
-            npm run build
-            pm2 restart npm
-
+    - uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PASSWORD }}
+        script: |
+          export NVM_DIR="$HOME/.nvm"[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+          cd cda242-next
+          git pull
+          npm install
+          npm run build
+          pm2 restart npm
 
   test:
     runs-on: ubuntu-latest
