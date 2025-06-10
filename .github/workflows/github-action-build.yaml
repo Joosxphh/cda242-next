@@ -111,5 +111,4 @@ jobs:
           script: |
             cd prod
             sudo docker compose -f docker-compose.prod.yml pull
-#            sudo docker pull ghcr.io/joosxphh/cda242-next/newt:latest
             sudo docker compose -f docker-compose.prod.yml up -d
