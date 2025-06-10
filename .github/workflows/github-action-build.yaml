@@ -100,8 +100,8 @@ jobs:
 
   deploy-docker:
     runs-on: ubuntu-latest
-    needs:
-      - build-push-docker
+#    needs:
+#      - build-push-docker
     steps:
       - uses: appleboy/ssh-action@v1
         with:
@@ -109,7 +109,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PASSWORD }}
           script: |
-            docker pull ghcr.io/joosxphh/cda242-next/newt:latest
-            docker stop cda242-next || true
-            docker rm cda242-next || true
-            docker run -d --name cda242-next -p 3000:3000 ghcr.io/joosxphh/cda242-next/newt:latest
+            cd prod
+            sudo docker compose -f docker-compose.prod.yml pull
+#            sudo docker pull ghcr.io/joosxphh/cda242-next/newt:latest
+            sudo docker compose -f docker-compose.prod.yml up -d
