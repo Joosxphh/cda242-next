@@ -34,9 +34,9 @@ jobs:
             whoami
             cd cda242-next
             git pull
-            npm clean-install
-            npm run build
-            pm2 restart npm
+            /home/ubuntu/.nvm/versions/node/v4.2.0/bin/npm install
+            /home/ubuntu/.nvm/versions/node/v4.2.0/bin/npm run build
+            /home/ubuntu/.nvm/versions/node/v4.2.0/bin/pm2 restart npm
 
 
   test:
