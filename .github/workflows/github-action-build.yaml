@@ -34,6 +34,7 @@ jobs:
       - run: echo "🚀 Lancement des étapes de déploiement"
       - run: npm install
       - run: npm run build
+      - run: echo "🚀 restart des serveurs pm2"
       - run: pm2 restart all
       - run: echo "🚀 Étapes de déploiement terminées"
 
