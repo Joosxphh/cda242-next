@@ -30,13 +30,13 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: whoami
-      - run: echo "🚀 Lancement des étapes de déploiement"
-      - run: npm install
-      - run: npm run build
-      - run: echo "🚀 restart des serveurs pm2"
-      - run: pm2 restart all
-      - run: echo "🚀 Étapes de déploiement terminées"
+          script:
+            whoami
+            cd cda242-next
+            git pull
+            npm clean-install
+            npm run build
+            pm2 restart npm
 
 
   test:
