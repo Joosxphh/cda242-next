@@ -22,5 +22,5 @@ COPY docker/next/entrypoint.sh /usr/local/bin/entrypoint
  # On donne les droits d'exécution au script
 RUN chmod +x /usr/local/bin/entrypoint
 
-ENTRYPOINT [ "entrypoint.sh" ]
+ENTRYPOINT [ "entrypoint" ]
 CMD ["npm", "run", "start" ]
