@@ -98,19 +98,6 @@ jobs:
           push: true
           target: next
           tags: ghcr.io/joosxphh/cda242-next/newt:${{ github.ref_name }}
-
-  deploy-docker-prod:
-    runs-on: ubuntu-latest
-    needs:
-      - build-push-docker
-    steps:
-      - uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PASSWORD }}
-          script:
-            sudo docker compose -f docker-compose.prod.yml pull
 #
 #  deploy-docker-prod:
 #    runs-on: ubuntu-latest
@@ -122,7 +109,20 @@ jobs:
 #          host: ${{ secrets.HOST }}
 #          username: ${{ secrets.USERNAME }}
 #          key: ${{ secrets.PASSWORD }}
-#          script: |
-#            cd prod
+#          script:
 #            sudo docker compose -f docker-compose.prod.yml pull
-#            sudo docker compose -f docker-compose.prod.yml up -d
+
+  deploy-docker-prod:
+    runs-on: ubuntu-latest
+    needs:
+      - build-push-docker
+    steps:
+      - uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PASSWORD }}
+          script: |
+            cd prod
+            sudo docker compose -f docker-compose.prod.yml pull
+            sudo docker compose -f docker-compose.prod.yml up -d
