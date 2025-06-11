@@ -104,7 +104,7 @@ jobs:
     if: ${{github.ref_name == 'develop'}}
     environment:
         name: test
-        url: http://${{ secrets.HOST }}:3000
+        url: http://ec2-18-204-77-83.compute-1.amazonaws.com:3000
     needs:
       - build-push-docker
     steps:
@@ -123,7 +123,7 @@ jobs:
     if: ${{github.ref_name == 'main'}}
     environment:
         name: prod
-        url: http://${{ secrets.HOST }}
+        url: http://ec2-18-204-77-83.compute-1.amazonaws.com/
     needs:
       - build-push-docker
     steps:
