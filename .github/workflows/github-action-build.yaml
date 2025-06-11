@@ -99,21 +99,25 @@ jobs:
           target: next
           tags: ghcr.io/joosxphh/cda242-next/newt:${{ github.ref_name }}
 #
-#  deploy-docker-prod:
-#    runs-on: ubuntu-latest
-#    needs:
-#      - build-push-docker
-#    steps:
-#      - uses: appleboy/ssh-action@v1
-#        with:
-#          host: ${{ secrets.HOST }}
-#          username: ${{ secrets.USERNAME }}
-#          key: ${{ secrets.PASSWORD }}
-#          script:
-#            sudo docker compose -f docker-compose.prod.yml pull
+  deploy-docker-test:
+    runs-on: ubuntu-latest
+    if: ${{github.ref_name == 'develop'}}
+    needs:
+      - build-push-docker
+    steps:
+      - uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PASSWORD }}
+          script: |
+            cd test
+            sudo docker compose -f docker-compose.test.yml pull
+            sudo docker compose -f docker-compose.test.yml up -d
 
   deploy-docker-prod:
     runs-on: ubuntu-latest
+    if: ${{github.ref_name == 'main'}}
     needs:
       - build-push-docker
     steps:
