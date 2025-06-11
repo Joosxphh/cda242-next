@@ -2,6 +2,8 @@
 
 echo "yo le boss, le container est lancé, tié un tigre"
 
-npm install
+if ["$NODE_ENV" = "development"]; then
+  npm install
+fi
 
 exec "$@"

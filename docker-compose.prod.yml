@@ -3,6 +3,8 @@ version: '3.8'
 services:
   next-app:
     image: ghcr.io/joosxphh/cda242-next/newt:latest
+    restart: unless-stopped
     ports:
       - "3000:3000"
-    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
