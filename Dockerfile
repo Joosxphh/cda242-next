@@ -17,4 +17,10 @@ RUN npm run build
 
 EXPOSE 3000
 
-CMD npm run start
+# On copie le script d'entrée dans le conteneur et on retire le .sh pour pas avoir à le remettre à chaque fois
+COPY docker/next/entrypoint.sh /usr/local/bin/entrypoint
+ # On donne les droits d'exécution au script
+RUN chmod +x /usr/local/bin/entrypoint
+
+ENTRYPOINT [ "entrypoint.sh" ]
+CMD ["npm", "run", "start" ]
